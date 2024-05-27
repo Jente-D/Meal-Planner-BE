@@ -1,6 +1,9 @@
 package be.multimedi.mealplanning.user;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
 @Entity
@@ -14,9 +17,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
+    @NotBlank
     private String username;
     @Column (nullable = false, unique = true)
+    @NotBlank
+    @Email(message="Please provide a valid email address")
+    @Pattern(regexp=".+@.+\\..+", message="Please provide a valid email address")
     private String email;
+    @NotBlank
     @Column (nullable = false)
     private String password;
 }
