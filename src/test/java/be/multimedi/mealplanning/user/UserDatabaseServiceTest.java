@@ -3,6 +3,8 @@ package be.multimedi.mealplanning.user;
 import jakarta.persistence.EntityExistsException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -51,12 +53,13 @@ class UserDatabaseServiceTest {
         assertThrows(EntityExistsException.class, () -> userService.registerNewUser(user));
     }
 
-    @Test
-    void testRegisterNewUserEmptyEmailShouldThrowException() {
+    @ParameterizedTest
+    @ValueSource(strings = {" ", "test@gmail", "test", "testgmail.com"})
+    void testRegisterNewUserInvalidEmailShouldThrowException(String input) {
         //Arrange
         UserRegistrationDto user = UserRegistrationDto.builder()
                 .username("test")
-                .email("")
+                .email(input)
                 .password("password")
                 .build();
 
