@@ -1,5 +1,8 @@
 package be.multimedi.mealplanning.user;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,8 +11,13 @@ import lombok.Setter;
 @Setter
 @Builder
 public class UserRegistrationDto {
+    @NotBlank
     private String username;
+    @NotBlank
+    @Email(message="Please provide a valid email address")
+    @Pattern(regexp=".+@.+\\..+", message="Please provide a valid email address")
     private String email;
+    @NotBlank
     private String password;
 
     public static User convertToEntity(UserRegistrationDto dto){
