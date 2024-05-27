@@ -7,12 +7,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class registerUserDto {
+public class UserRegistrationDto {
     private String username;
     private String email;
     private String password;
 
-    public static User convertToEntity(registerUserDto dto){
+    public static User convertToEntity(UserRegistrationDto dto){
         return User.builder()
                 .username(dto.getUsername())
                 .email(dto.getEmail())
