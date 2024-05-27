@@ -11,4 +11,12 @@ public class registerUserDto {
     private String username;
     private String email;
     private String password;
+
+    public static User convertToEntity(registerUserDto dto){
+        return User.builder()
+                .username(dto.getUsername())
+                .email(dto.getEmail())
+                .password(dto.getPassword())
+                .build();
+    }
 }
