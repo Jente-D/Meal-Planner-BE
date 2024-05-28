@@ -22,7 +22,7 @@ public class User {
     @Column (nullable = false, unique = true)
     @NotBlank
     @Email(message="Please provide a valid email address")
-    @Pattern(regexp="^[a-z1-9.\\-_]+@[a-z1-9\\-_]+.[a-z]{2,4}$", message="Please provide a valid email address")
+    @Pattern(regexp="^[a-zA-Z0-9.\\-_]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$", message="Please provide a valid email address")
     private String email;
     @NotBlank
     @Column (nullable = false)
