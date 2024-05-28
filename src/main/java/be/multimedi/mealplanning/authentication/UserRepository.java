@@ -1,4 +1,4 @@
-package be.multimedi.mealplanning.user;
+package be.multimedi.mealplanning.authentication;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

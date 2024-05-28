@@ -1,7 +1,7 @@
 package be.multimedi.mealplanning.security;
 
-import be.multimedi.mealplanning.user.User;
-import be.multimedi.mealplanning.user.UserRepository;
+import be.multimedi.mealplanning.authentication.User;
+import be.multimedi.mealplanning.authentication.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

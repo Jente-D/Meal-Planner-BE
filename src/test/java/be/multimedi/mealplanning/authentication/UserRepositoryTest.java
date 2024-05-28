@@ -1,4 +1,4 @@
-package be.multimedi.mealplanning.user;
+package be.multimedi.mealplanning.authentication;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;

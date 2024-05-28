@@ -1,13 +1,9 @@
-package be.multimedi.mealplanning.user;
+package be.multimedi.mealplanning.authentication;
 
 import jakarta.persistence.EntityExistsException;
-import jakarta.validation.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor

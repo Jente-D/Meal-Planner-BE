@@ -1,4 +1,4 @@
-package be.multimedi.mealplanning.user;
+package be.multimedi.mealplanning.authentication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.params.ParameterizedTest;
