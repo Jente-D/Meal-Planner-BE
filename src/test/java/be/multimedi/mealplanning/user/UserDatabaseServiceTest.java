@@ -28,7 +28,6 @@ class UserDatabaseServiceTest {
     void testRegisterNewUserNonexistentEmailShouldSucceed() {
         //Arrange
         UserRegistrationDto userDto = UserRegistrationDto.builder()
-                .username("test")
                 .email("test@gmail.com")
                 .password("password")
                 .build();
@@ -49,7 +48,6 @@ class UserDatabaseServiceTest {
     void testRegisterNewUserExistentEmailShouldThrowException() {
         //Arrange
         UserRegistrationDto user = UserRegistrationDto.builder()
-                .username("test")
                 .email("test@gmail.com")
                 .password("password")
                 .build();
@@ -65,7 +63,6 @@ class UserDatabaseServiceTest {
     void testRegisterNewUserInvalidEmailShouldThrowException(String input) {
         //Arrange
         UserRegistrationDto user = UserRegistrationDto.builder()
-                .username("test")
                 .email(input)
                 .password("password")
                 .build();
