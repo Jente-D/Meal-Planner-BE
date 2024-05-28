@@ -17,9 +17,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
-    @NotBlank
-    private String username;
     @Column (nullable = false, unique = true)
     @NotBlank
     @Email(message="Please provide a valid email address")

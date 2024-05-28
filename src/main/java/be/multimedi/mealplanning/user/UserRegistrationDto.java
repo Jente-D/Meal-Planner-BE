@@ -12,17 +12,15 @@ import lombok.Setter;
 @Builder
 public class UserRegistrationDto {
     @NotBlank
-    private String username;
-    @NotBlank
     @Email(message="Please provide a valid email address")
     @Pattern(regexp="^[a-zA-Z0-9.\\-_]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$", message="Please provide a valid email address")
     private String email;
     @NotBlank
     private String password;
 
+    //TODO: Model mapper overwegen te gebruiken Libr of mapst... modelmapper niet compatible met record in pom toevoegen daaarvoor + apparte klasse
     public static User convertToEntity(UserRegistrationDto dto){
         return User.builder()
-                .username(dto.getUsername())
                 .email(dto.getEmail())
                 .password(dto.getPassword())
                 .build();
