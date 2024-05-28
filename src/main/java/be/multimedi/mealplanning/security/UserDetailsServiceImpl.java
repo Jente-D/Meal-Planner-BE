@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserRepository userRepo;
 
-    //TODO: De naam loadUserByUsername kan niet veranderd worden > voorinstelling spring? maar wat als ik wil kijken of gebruiker bestaat met email > onlogisch of?
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
