@@ -16,7 +16,8 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<String> handleRegisterNewUser(@Valid @RequestBody UserRegistrationDto userDto, BindingResult br){
         if(br.hasErrors()){
-            throw new IllegalArgumentException("Invalid user");
+            String errorMsg = br.getFieldError("email").getDefaultMessage();
+            throw new IllegalArgumentException(errorMsg);
         }
         userService.registerNewUser(userDto);
         return ResponseEntity.ok("You can now login as " + userDto.getEmail());
