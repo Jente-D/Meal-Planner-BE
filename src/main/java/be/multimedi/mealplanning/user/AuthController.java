@@ -16,7 +16,14 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<String> handleRegisterNewUser(@Valid @RequestBody UserRegistrationDto userDto, BindingResult br){
         if(br.hasErrors()){
-            String errorMsg = br.getFieldError("email").getDefaultMessage();
+            String errorMsg;
+            if (br.hasFieldErrors("email")) {
+                errorMsg = br.getFieldError("email").getDefaultMessage();
+            } else if (br.hasFieldErrors("password")) {
+                errorMsg = br.getFieldError("password").getDefaultMessage();
+            } else {
+                errorMsg = "Validation error";
+            }
             throw new IllegalArgumentException(errorMsg);
         }
         userService.registerNewUser(userDto);
