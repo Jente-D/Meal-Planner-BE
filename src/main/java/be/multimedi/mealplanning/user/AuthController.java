@@ -19,6 +19,6 @@ public class AuthController {
             throw new IllegalArgumentException("Invalid user");
         }
         userService.registerNewUser(userDto);
-        return ResponseEntity.ok("You can now login as " + userDto.getUsername());
+        return ResponseEntity.ok("You can now login as " + userDto.getEmail());
     }
 }
