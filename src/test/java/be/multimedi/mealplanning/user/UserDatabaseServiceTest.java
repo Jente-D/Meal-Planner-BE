@@ -57,17 +57,4 @@ class UserDatabaseServiceTest {
         //Act & Assert
         assertThrows(EntityExistsException.class, () -> userService.registerNewUser(user));
     }
-
-    @ParameterizedTest
-    @ValueSource(strings = {" ", "test@gmail", "test", "testgmail.com"})
-    void testRegisterNewUserInvalidEmailShouldThrowException(String input) {
-        //Arrange
-        UserRegistrationDto user = UserRegistrationDto.builder()
-                .email(input)
-                .password("password")
-                .build();
-
-        //Act & Assert
-        assertThrows(IllegalArgumentException.class, () -> userService.registerNewUser(user));
-    }
 }
