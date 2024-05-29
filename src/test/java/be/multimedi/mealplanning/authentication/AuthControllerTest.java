@@ -47,10 +47,10 @@ class AuthControllerTest {
     @Test
     public void givenFaultUserAuthenticationWhenRegistrationRequestIsMadeThenReturn400Nok() throws Exception {
 //       GIVEN
-        UserRegistrationDto registrationDto = UserRegistrationDto.builder()
-                .email("invalidEmail")
-                .password("invalidPassword")
-                .build();
+        UserRegistrationDto registrationDto = new UserRegistrationDto(
+                "invalidEmail",
+                "invalidPassword"
+                );
 //        WHEN & then / ACT & ASSERT
         when(userService.registerNewUser(any(UserRegistrationDto.class)))
                 .thenReturn(UserRegistrationDto.convertToEntity(registrationDto));

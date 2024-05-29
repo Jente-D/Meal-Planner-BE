@@ -24,10 +24,10 @@ class UserDatabaseServiceTest {
     @Test
     void testRegisterNewUserNonexistentEmailShouldSucceed() {
         //Arrange
-        UserRegistrationDto userDto = UserRegistrationDto.builder()
-                .email("test@gmail.com")
-                .password("password")
-                .build();
+        UserRegistrationDto userDto = new UserRegistrationDto(
+                "test@gmail.com",
+                "password"
+                );
         User user = UserRegistrationDto.convertToEntity(userDto);
         user.setPassword("encodedpassword");
 
@@ -44,10 +44,10 @@ class UserDatabaseServiceTest {
     @Test
     void testRegisterNewUserExistentEmailShouldThrowException() {
         //Arrange
-        UserRegistrationDto user = UserRegistrationDto.builder()
-                .email("test@gmail.com")
-                .password("password")
-                .build();
+        UserRegistrationDto user = new UserRegistrationDto(
+                "test@gmail.com",
+                "password"
+                );
 
         when(userRepo.existsByEmail(any(String.class))).thenReturn(true);
 
