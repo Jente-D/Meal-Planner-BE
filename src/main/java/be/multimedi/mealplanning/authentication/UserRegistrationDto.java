@@ -3,12 +3,13 @@ package be.multimedi.mealplanning.authentication;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
+//@Setter(AccessLevel.PRIVATE)
 @Builder
 public class UserRegistrationDto {
     @NotBlank

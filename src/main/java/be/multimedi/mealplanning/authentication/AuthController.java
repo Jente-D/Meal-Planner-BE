@@ -20,6 +20,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<String> handleRegisterNewUser(@Valid @RequestBody UserRegistrationDto userDto, BindingResult br){
+        try{
         if(br.hasErrors()){
             String errorMsg;
             if (br.hasFieldErrors("email")) {
@@ -30,6 +31,10 @@ public class AuthController {
                 errorMsg = "Validation error";
             }
             throw new IllegalArgumentException(errorMsg);
+        }}
+        catch (IllegalArgumentException iae){
+            System.out.println(iae.getMessage());
+            return ResponseEntity.badRequest().build();
         }
         userService.registerNewUser(userDto);
         return ResponseEntity.ok("You can now login as " + userDto.getEmail());
