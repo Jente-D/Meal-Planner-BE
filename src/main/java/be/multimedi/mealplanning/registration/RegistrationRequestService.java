@@ -1,13 +1,15 @@
 package be.multimedi.mealplanning.registration;
 
 import be.multimedi.mealplanning.authentication.*;
+import jakarta.persistence.EntityExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class RegistrationRequestService {
     @Autowired
-    private UserService userService;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private EmailSenderService emailSenderService;
@@ -19,11 +21,12 @@ public class RegistrationRequestService {
     private UserRepository userRepository;
 
     public RegistrationRequest createRegistrationRequest(UserRegistrationRequestDto userDto) {
+        if (registrationRequestRepository.existsByEmail(userDto.getEmail())) {
+            throw new EntityExistsException("Email taken: " + userDto.getEmail());
+        }
         RegistrationRequest registrationRequest = new RegistrationRequest(userDto);
-
-        // Save the registration request to the database
+        registrationRequest.setPassword(passwordEncoder.encode(userDto.getPassword()));
         registrationRequestRepository.save(registrationRequest);
-
         return registrationRequest;
     }
 
@@ -49,6 +52,9 @@ public class RegistrationRequestService {
         } else {
             return false;
         }
+    }
+    public boolean existsByEmail(String email) {
+        return registrationRequestRepository.existsByEmail(email);
     }
 }
 
