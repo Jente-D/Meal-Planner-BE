@@ -16,9 +16,10 @@ public class UserRegistrationDto {
 
     //TODO: Model mapper overwegen te gebruiken Libr of mapst... modelmapper niet compatible met record in pom toevoegen daaarvoor + apparte klasse
     public static User convertToEntity(UserRegistrationDto dto){
-        return User.builder()
-                .email(dto.getEmail())
-                .password(dto.getPassword())
-                .build();
+        return new User(
+                null,
+                dto.getEmail(),
+                dto.getPassword()
+        );
     }
 }
