@@ -1,6 +1,8 @@
 package be.multimedi.mealplanning.authentication;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,10 +12,10 @@ import lombok.Setter;
 
 @AllArgsConstructor
 public class UserLoginDto {
-//    TODO: weer dezelfde validator? of toch iets anders?
-//    TODO: wat is dan het verschil met de registeredDTO of is dit voor toekomst project groei al goed zodat DTO maar in 1 senario gebruikt word
-
+    @Email(message="Please provide a valid email address")
+    @Pattern(regexp="^[a-zA-Z0-9.\\-_\\+]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$", message="Please provide a valid email address")
     private String email;
+    @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[.?!]).{12,}", message = "is not a valid password. Your password must be at least 12 characters long and include at least one lowercase letter, one uppercase letter, one digit, and one special character (., ?, !).")
     private String password;
 
     private static User convertToEntity(UserLoginDto dto){

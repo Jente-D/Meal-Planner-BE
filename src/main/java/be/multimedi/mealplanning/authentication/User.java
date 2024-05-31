@@ -23,7 +23,6 @@ public class User {
     @Column (nullable = false, unique = true)
     private String email;
     @NotBlank
-    @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[.?!]).{12,}", message = "is not a valid password. Your password must be at least 12 characters long and include at least one lowercase letter, one uppercase letter, one digit, and one special character (., ?, !).")
     @Column (nullable = false)
     private String password;
 }
