@@ -1,9 +1,8 @@
-package be.multimedi.mealplanning.authentication;
+package be.multimedi.mealplanning.registration;
 
+import be.multimedi.mealplanning.authentication.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 public class RegistrationRequestService {

@@ -1,4 +1,4 @@
-package be.multimedi.mealplanning.authentication;
+package be.multimedi.mealplanning.registration;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class RequestAccountController {
         return ResponseEntity.ok("Registration request created for " + userDto.getEmail());
     }
 
-    @GetMapping("/confirm")
+    @GetMapping("/confirm-account")
     public ResponseEntity<?> confirmRegistration(@RequestParam("token") String token) {
         boolean isConfirmed = registrationRequestService.confirmRegistration(token);
         if (isConfirmed) {

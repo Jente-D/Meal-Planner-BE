@@ -1,5 +1,6 @@
-package be.multimedi.mealplanning.authentication;
+package be.multimedi.mealplanning.registration;
 
+import be.multimedi.mealplanning.authentication.UserRegistrationDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

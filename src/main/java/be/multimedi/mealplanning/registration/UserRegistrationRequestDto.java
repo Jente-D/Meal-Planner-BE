@@ -1,8 +1,8 @@
-package be.multimedi.mealplanning.authentication;
+package be.multimedi.mealplanning.registration;
 
+import be.multimedi.mealplanning.authentication.UserRegistrationDto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.Date;
