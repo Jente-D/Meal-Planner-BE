@@ -10,3 +10,19 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: jente.dorssemont@gmail.com
+    password:  gvjj zrnm nvaz gtbc
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+            required: true
+            auth: true
+            connection timeout: 5000
+            timeout: 5000
+            write timeout: 5000
