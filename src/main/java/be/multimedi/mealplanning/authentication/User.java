@@ -19,7 +19,7 @@ public class User {
     private Long id;
     @NotBlank
     @Email(message="Please provide a valid email address")
-    @Pattern(regexp="^[a-zA-Z0-9.\\-_]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$", message="Please provide a valid email address")
+    @Pattern(regexp="^[a-zA-Z0-9.\\-_\\+]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$", message="Please provide a valid email address")
     @Column (nullable = false, unique = true)
     private String email;
     @NotBlank
