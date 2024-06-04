@@ -29,7 +29,7 @@ public class EmailSenderService {
         mailMessage.setFrom("jente.dorssemont@gmail.com");
         mailMessage.setText(
                 "To confirm your account, please click here : "
-                        +"http://localhost:8080/api/v1/request/confirm-account?token="
+                        +"http://localhost:8080/api/v1/auth/confirm?token="
                         + registrationRequest.getConfirmationToken());
 
         sendEmail(mailMessage);

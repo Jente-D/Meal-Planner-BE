@@ -41,6 +41,12 @@ public class AuthController {
         return ResponseEntity.ok("A confimation email has been sent to " + userDto.getEmail());
     }
 
+    @GetMapping("/confirm")
+    public ResponseEntity<String> handleConfirmRegistration(@RequestParam("token") String confirmationToken) {
+        User user = registrationRequestService.confirmRegistration(confirmationToken);
+        return ResponseEntity.ok("Account for " + user.getEmail() + " has been activated.");
+    }
+
     @PostMapping("/login")
     public ResponseEntity<String> handleLogin (@Valid @RequestBody UserLoginDto loginDto, BindingResult br){
         if(br.hasErrors()){
