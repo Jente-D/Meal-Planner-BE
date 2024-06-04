@@ -1,12 +1,9 @@
-package be.multimedi.mealplanning.authentication;
+package be.multimedi.mealplanning.user;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -20,7 +17,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static org.hamcrest.Matchers.containsString;
+import java.util.Date;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -28,10 +26,10 @@ import static org.mockito.Mockito.when;
 @AutoConfigureMockMvc
 @Tag("integrationTest")
 @RunWith(MockitoJUnitRunner.class)
-class AuthControllerTest {
+class VerificationControllerTest {
 
     @InjectMocks
-    private AuthController authController;
+    private VerificationController verificationController;
 
     @Mock
     private UserService userService;
@@ -40,20 +38,25 @@ class AuthControllerTest {
 
     @Before
     public void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(authController)
+        mockMvc = MockMvcBuilders.standaloneSetup(verificationController)
                 .build();
     }
 
     @Test
     public void givenFaultUserAuthenticationWhenRegistrationRequestIsMadeThenReturn400Nok() throws Exception {
 //       GIVEN
-        UserRegistrationDto registrationDto = new UserRegistrationDto(
-                "invalidEmail",
-                "invalidPassword"
-                );
+        Long id = 1L; // example id
+        String email = "invalidEmail";
+        String password = "Password123!"; // example password
+        String name = "Test User"; // example name
+        Date dateOfBirth = new Date(); // example date of birth
+        Boolean isVerified = false; // example isVerified
+
+        PotentialUserDto registrationDto = new PotentialUserDto(id, email, password, name, dateOfBirth, isVerified);
+
 //        WHEN & then / ACT & ASSERT
-        when(userService.registerNewUser(any(UserRegistrationDto.class)))
-                .thenReturn(UserRegistrationDto.convertToEntity(registrationDto));
+        when(userService.registerNewUser(any(PotentialUserDto.class)))
+                .thenReturn(PotentialUserDto.convertToEntity(registrationDto));
 
         mockMvc.perform(MockMvcRequestBuilders
                         .post("/api/v1/auth/register")

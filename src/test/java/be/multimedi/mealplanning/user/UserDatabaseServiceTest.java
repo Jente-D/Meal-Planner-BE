@@ -1,4 +1,4 @@
-package be.multimedi.mealplanning.authentication;
+package be.multimedi.mealplanning.user;
 
 import jakarta.persistence.EntityExistsException;
 import org.junit.jupiter.api.Test;
@@ -7,6 +7,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -24,15 +26,19 @@ class UserDatabaseServiceTest {
     @Test
     void testRegisterNewUserNonexistentEmailShouldSucceed() {
         //Arrange
-        UserRegistrationDto userDto = new UserRegistrationDto(
-                "test@gmail.com",
-                "password"
-                );
-        User user = UserRegistrationDto.convertToEntity(userDto);
+        Long id = 1L; // example id
+        String email = "test@gmail.com";
+        String password = "Password123!"; // example password
+        String name = "Test User"; // example name
+        Date dateOfBirth = new Date(); // example date of birth
+        Boolean isVerified = false; // example isVerified
+
+        PotentialUserDto userDto = new PotentialUserDto(id, email, password, name, dateOfBirth, isVerified);
+        User user = PotentialUserDto.convertToEntity(userDto);
         user.setPassword("encodedpassword");
 
         when(passwordEncoder.encode(any())).thenAnswer(i -> "encoded" + i.getArguments()[0]);
-        when(userRepo.existsByEmail(any(String.class))).thenReturn(false);
+        when(userRepo.existsByEmailIgnoreCase(any(String.class))).thenReturn(false);
         when(userRepo.save(any(User.class))).thenReturn(user);
         //Act
         User registeredUser = userService.registerNewUser(userDto);
@@ -44,12 +50,16 @@ class UserDatabaseServiceTest {
     @Test
     void testRegisterNewUserExistentEmailShouldThrowException() {
         //Arrange
-        UserRegistrationDto user = new UserRegistrationDto(
-                "test@gmail.com",
-                "password"
-                );
+        Long id = 1L; // example id
+        String email = "test@gmail.com";
+        String password = "Password123!"; // example password
+        String name = "Test User"; // example name
+        Date dateOfBirth = new Date(); // example date of birth
+        Boolean isVerified = false; // example isVerified
 
-        when(userRepo.existsByEmail(any(String.class))).thenReturn(true);
+        PotentialUserDto user = new PotentialUserDto(id, email, password, name, dateOfBirth, isVerified);
+
+        when(userRepo.existsByEmailIgnoreCase(any(String.class))).thenReturn(true);
 
         //Act & Assert
         assertThrows(EntityExistsException.class, () -> userService.registerNewUser(user));
