@@ -1,6 +1,5 @@
-package be.multimedi.mealplanning.registration;
+package be.multimedi.mealplanning.authentication;
 
-import be.multimedi.mealplanning.authentication.UserRegistrationDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,16 +30,4 @@ public class RegistrationRequest {
     private String password;
     @Column(nullable = false)
     private boolean status;
-
-    public RegistrationRequest(UserRegistrationDto userRegistrationDto) {
-        this.email = userRegistrationDto.getEmail();
-        this.password = userRegistrationDto.getPassword();
-        createdDate = new Date();
-        confirmationToken = UUID.randomUUID().toString();
-    }
-
-    @PrePersist
-    protected void setCreationDate() {
-        createdDate = new Date();
-    }
 }
