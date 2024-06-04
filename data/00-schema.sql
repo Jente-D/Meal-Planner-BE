@@ -5,7 +5,7 @@ create table users(
     primary key (id)
 );
 
-CREATE TABLE registration_request (
+CREATE TABLE potential_users (
         id int GENERATED ALWAYS AS identity,
         confirmation_token VARCHAR(255),
         created_date TIMESTAMP,
