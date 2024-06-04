@@ -1,10 +1,12 @@
 package be.multimedi.mealplanning.user;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -21,7 +23,7 @@ public class PotentialUser {
     private String confirmationToken;
 
     @Temporal(TemporalType.DATE)
-    private Date createdDate;
+    private LocalDate createdDate;
 
     @Column(nullable = false, unique = true)
     private String email;

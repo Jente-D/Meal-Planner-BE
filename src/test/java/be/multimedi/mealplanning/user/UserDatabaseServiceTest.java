@@ -38,7 +38,7 @@ class UserDatabaseServiceTest {
         user.setPassword("encodedpassword");
 
         when(passwordEncoder.encode(any())).thenAnswer(i -> "encoded" + i.getArguments()[0]);
-        when(userRepo.existsByEmail(any(String.class))).thenReturn(false);
+        when(userRepo.existsByEmailIgnoreCase(any(String.class))).thenReturn(false);
         when(userRepo.save(any(User.class))).thenReturn(user);
         //Act
         User registeredUser = userService.registerNewUser(userDto);
@@ -59,7 +59,7 @@ class UserDatabaseServiceTest {
 
         PotentialUserDto user = new PotentialUserDto(id, email, password, name, dateOfBirth, isVerified);
 
-        when(userRepo.existsByEmail(any(String.class))).thenReturn(true);
+        when(userRepo.existsByEmailIgnoreCase(any(String.class))).thenReturn(true);
 
         //Act & Assert
         assertThrows(EntityExistsException.class, () -> userService.registerNewUser(user));

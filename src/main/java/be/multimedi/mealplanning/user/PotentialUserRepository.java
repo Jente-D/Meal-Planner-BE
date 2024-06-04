@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface PotentialUserRepository extends JpaRepository<PotentialUser, Long> {
     Optional <PotentialUser> findByConfirmationToken(String confirmationToken);
-    boolean existsByEmail(String email);
+    boolean existsByEmailIgnoreCase(String email);
 }

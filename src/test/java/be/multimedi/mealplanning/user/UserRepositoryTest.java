@@ -20,18 +20,18 @@ class UserRepositoryTest {
     private UserRepository userRepo;
 
     @Test
-    void existsByEmail() {
+    void existsByEmailIgnoreCase() {
         // Arrange
         User user = new User();
         user.setEmail("test@gmail.com");
         user.setPassword("123456789Aa?");
 
-        when(userRepo.existsByEmail("test@gmail.com")).thenReturn(true);
-        when(userRepo.existsByEmail("noemail@gmail.com")).thenReturn(false);
+        when(userRepo.existsByEmailIgnoreCase("test@gmail.com")).thenReturn(true);
+        when(userRepo.existsByEmailIgnoreCase("noemail@gmail.com")).thenReturn(false);
 
         // Assert
-        assertTrue(userRepo.existsByEmail("test@gmail.com"));
-        assertFalse(userRepo.existsByEmail("noemail@gmail.com"));
+        assertTrue(userRepo.existsByEmailIgnoreCase("test@gmail.com"));
+        assertFalse(userRepo.existsByEmailIgnoreCase("noemail@gmail.com"));
     }
 
     @Test

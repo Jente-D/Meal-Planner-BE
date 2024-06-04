@@ -55,12 +55,12 @@ public class VerificationController {
     @PostMapping("/login")
     public ResponseEntity<String> handleLogin (@Valid @RequestBody UserLoginDto loginDto, BindingResult br){
         if(br.hasErrors()){
-            throw new IllegalArgumentException("Invallid User sign in DTO");
+            throw new IllegalArgumentException("Invalid User sign in DTO");
         }
 //        Spring security does all te work for us
         Authentication auth = authManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
         if (!auth.isAuthenticated()){
-            throw new BadCredentialsException("invalid credentials");
+            throw new BadCredentialsException("Invalid credentials");
         }
         return ResponseEntity.ok("You are logged in as " + loginDto.getEmail());
     }

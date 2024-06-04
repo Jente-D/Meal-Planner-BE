@@ -11,9 +11,10 @@ public class UserDatabaseService implements UserService {
     private final UserRepository userRepo;
     private final PasswordEncoder passwordEncoder;
 
+    @Deprecated
     @Override
     public User registerNewUser(PotentialUserDto potentialUserDto) {
-        if(userRepo.existsByEmail(potentialUserDto.getEmail())){
+        if(userRepo.existsByEmailIgnoreCase(potentialUserDto.getEmail())){
             throw new EntityExistsException("Email taken: " + potentialUserDto.getEmail());
         }
         User user = potentialUserDto.convertToEntity(potentialUserDto);
