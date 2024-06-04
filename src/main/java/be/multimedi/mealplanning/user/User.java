@@ -1,4 +1,4 @@
-package be.multimedi.mealplanning.authentication;
+package be.multimedi.mealplanning.user;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

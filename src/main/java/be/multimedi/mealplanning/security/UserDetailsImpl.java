@@ -1,6 +1,6 @@
 package be.multimedi.mealplanning.security;
 
-import be.multimedi.mealplanning.authentication.User;
+import be.multimedi.mealplanning.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

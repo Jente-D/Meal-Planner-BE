@@ -1,6 +1,6 @@
 package be.multimedi.mealplanning.messaging;
 
-import be.multimedi.mealplanning.authentication.RegistrationRequest;
+import be.multimedi.mealplanning.user.RegistrationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

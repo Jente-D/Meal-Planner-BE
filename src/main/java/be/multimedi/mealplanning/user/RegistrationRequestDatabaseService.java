@@ -1,4 +1,4 @@
-package be.multimedi.mealplanning.authentication;
+package be.multimedi.mealplanning.user;
 
 import be.multimedi.mealplanning.messaging.EmailSenderService;
 import jakarta.persistence.EntityExistsException;

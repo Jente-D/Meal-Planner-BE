@@ -1,4 +1,4 @@
-package be.multimedi.mealplanning.authentication;
+package be.multimedi.mealplanning.user;
 
 import jakarta.persistence.EntityExistsException;
 import lombok.RequiredArgsConstructor;
