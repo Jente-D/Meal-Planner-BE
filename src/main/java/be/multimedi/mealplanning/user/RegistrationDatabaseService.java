@@ -24,7 +24,7 @@ public class RegistrationDatabaseService implements RegistrationService {
             throw new EntityExistsException("Email taken: " + potentialUserDto.getEmail());
         }
         PotentialUser potentialUser = new PotentialUser();
-        potentialUser.setEmail(potentialUserDto.getEmail());
+        potentialUser.setEmail(potentialUserDto.getEmail().toLowerCase());
         potentialUser.setPassword(passwordEncoder.encode(potentialUserDto.getPassword()));
         potentialUser.setCreatedDate(new Date());
         potentialUser.setConfirmationToken(UUID.randomUUID().toString());
