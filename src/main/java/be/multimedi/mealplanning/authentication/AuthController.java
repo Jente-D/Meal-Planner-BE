@@ -18,27 +18,27 @@ public class AuthController {
     private final UserService userService;
     private final AuthenticationManager authManager;
 
-    @PostMapping("/register")
-    public ResponseEntity<String> handleRegisterNewUser(@Valid @RequestBody UserRegistrationDto userDto, BindingResult br){
-        try{
-        if(br.hasErrors()){
-            String errorMsg;
-            if (br.hasFieldErrors("email")) {
-                errorMsg = br.getFieldError("email").getDefaultMessage();
-            } else if (br.hasFieldErrors("password")) {
-                errorMsg = br.getFieldError("password").getDefaultMessage();
-            } else {
-                errorMsg = "Validation error";
-            }
-            throw new IllegalArgumentException(errorMsg);
-        }}
-        catch (IllegalArgumentException iae){
-            System.out.println(iae.getMessage());
-            return ResponseEntity.badRequest().build();
-        }
-        userService.registerNewUser(userDto);
-        return ResponseEntity.ok("You can now login as " + userDto.getEmail());
-    }
+//    @PostMapping("/register")
+//    public ResponseEntity<String> handleRegisterNewUser(@Valid @RequestBody UserRegistrationDto userDto, BindingResult br){
+//        try{
+//        if(br.hasErrors()){
+//            String errorMsg;
+//            if (br.hasFieldErrors("email")) {
+//                errorMsg = br.getFieldError("email").getDefaultMessage();
+//            } else if (br.hasFieldErrors("password")) {
+//                errorMsg = br.getFieldError("password").getDefaultMessage();
+//            } else {
+//                errorMsg = "Validation error";
+//            }
+//            throw new IllegalArgumentException(errorMsg);
+//        }}
+//        catch (IllegalArgumentException iae){
+//            System.out.println(iae.getMessage());
+//            return ResponseEntity.badRequest().build();
+//        }
+//        userService.registerNewUser(userDto);
+//        return ResponseEntity.ok("You can now login as " + userDto.getEmail());
+//    }
 
     @PostMapping("/login")
     public ResponseEntity<String> handleLogin (@Valid @RequestBody UserLoginDto loginDto, BindingResult br){

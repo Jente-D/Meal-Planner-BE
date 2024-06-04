@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @CrossOrigin
-@RequestMapping("/api/v1/request")
+@RequestMapping("/api/v1/auth")
 public class RequestAccountController {
     @Autowired
     private RegistrationRequestService registrationRequestService;
