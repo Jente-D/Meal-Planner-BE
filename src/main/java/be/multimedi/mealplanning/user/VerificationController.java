@@ -10,6 +10,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/v1/auth")
 @CrossOrigin
@@ -20,25 +23,27 @@ public class VerificationController {
     private final RegistrationService registrationService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> handleRegisterNewUserRequest (@Valid @RequestBody PotentialUserDto userDto, BindingResult br){
-        try{
-        if(br.hasErrors()){
-            String errorMsg;
-            if (br.hasFieldErrors("email")) {
-                errorMsg = br.getFieldError("email").getDefaultMessage();
-            } else if (br.hasFieldErrors("password")) {
-                errorMsg = br.getFieldError("password").getDefaultMessage();
-            } else {
-                errorMsg = "Validation error";
+    public ResponseEntity<Map<String, String>> handleRegisterNewUserRequest (@Valid @RequestBody PotentialUserDto userDto, BindingResult br) {
+        try {
+            if (br.hasErrors()) {
+                String errorMsg;
+                if (br.hasFieldErrors("email")) {
+                    errorMsg = br.getFieldError("email").getDefaultMessage();
+                } else if (br.hasFieldErrors("password")) {
+                    errorMsg = br.getFieldError("password").getDefaultMessage();
+                } else {
+                    errorMsg = "Validation error";
+                }
+                throw new IllegalArgumentException(errorMsg);
             }
-            throw new IllegalArgumentException(errorMsg);
-        }}
-        catch (IllegalArgumentException iae){
+        } catch (IllegalArgumentException iae) {
             System.out.println(iae.getMessage());
             return ResponseEntity.badRequest().build();
         }
         registrationService.registerPotentialUser(userDto);
-        return ResponseEntity.ok("A confimation email has been sent to " + userDto.getEmail());
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "A confirmation email has been sent to " + userDto.getEmail());
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/confirm")
