@@ -35,17 +35,17 @@ class UserRepositoryTest {
     }
 
     @Test
-    void findByEmail() {
+    void findByEmailIgnoreCase() {
         // Arrange
         User user = new User();
         user.setEmail("test@gmail.com");
         user.setPassword("123456789Aa?");
 
-        when(userRepo.findByEmail("test@gmail.com")).thenReturn(Optional.of(user));
-        when(userRepo.findByEmail("noemail@gmail.com")).thenReturn(Optional.empty());
+        when(userRepo.findByEmailIgnoreCase("test@gmail.com")).thenReturn(Optional.of(user));
+        when(userRepo.findByEmailIgnoreCase("noemail@gmail.com")).thenReturn(Optional.empty());
 
         // Assert
-        assertEquals(user, userRepo.findByEmail("test@gmail.com").orElse(null));
-        assertFalse(userRepo.findByEmail("noemail@gmail.com").isPresent());
+        assertEquals(user, userRepo.findByEmailIgnoreCase("test@gmail.com").orElse(null));
+        assertFalse(userRepo.findByEmailIgnoreCase("noemail@gmail.com").isPresent());
     }
 }
