@@ -1,6 +1,6 @@
 package be.multimedi.mealplanning.messaging;
 
-import be.multimedi.mealplanning.user.RegistrationRequest;
+import be.multimedi.mealplanning.user.PotentialUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -22,15 +22,15 @@ public class EmailSenderService {
     }
 
     @Async
-    public void sendConfirmationEmail(RegistrationRequest registrationRequest) {
+    public void sendConfirmationEmail(PotentialUser potentialUser) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo(registrationRequest.getEmail());
+        mailMessage.setTo(potentialUser.getEmail());
         mailMessage.setSubject("Complete Registration!");
         mailMessage.setFrom("jente.dorssemont@gmail.com");
         mailMessage.setText(
                 "To confirm your account, please click here : "
                         +"http://localhost:8080/api/v1/auth/confirm?token="
-                        + registrationRequest.getConfirmationToken());
+                        + potentialUser.getConfirmationToken());
 
         sendEmail(mailMessage);
     }

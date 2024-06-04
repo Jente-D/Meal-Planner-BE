@@ -12,7 +12,7 @@ import java.util.Date;
 @Getter
 @Setter
 @AllArgsConstructor
-public class UserRegistrationDto {
+public class PotentialUserDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,7 +27,7 @@ public class UserRegistrationDto {
 
 
     //TODO: Model mapper overwegen te gebruiken Libr of mapst... modelmapper niet compatible met record in pom toevoegen daaarvoor + apparte klasse
-    public static User convertToEntity(UserRegistrationDto dto){
+    public static User convertToEntity(PotentialUserDto dto){
         return User.builder()
                 .email(dto.getEmail())
                 .password(dto.getPassword())

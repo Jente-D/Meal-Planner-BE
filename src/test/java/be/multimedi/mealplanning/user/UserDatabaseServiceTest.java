@@ -8,6 +8,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -24,11 +26,15 @@ class UserDatabaseServiceTest {
     @Test
     void testRegisterNewUserNonexistentEmailShouldSucceed() {
         //Arrange
-        UserRegistrationDto userDto = new UserRegistrationDto(
-                "test@gmail.com",
-                "password"
-                );
-        User user = UserRegistrationDto.convertToEntity(userDto);
+        Long id = 1L; // example id
+        String email = "test@gmail.com";
+        String password = "Password123!"; // example password
+        String name = "Test User"; // example name
+        Date dateOfBirth = new Date(); // example date of birth
+        Boolean isVerified = false; // example isVerified
+
+        PotentialUserDto userDto = new PotentialUserDto(id, email, password, name, dateOfBirth, isVerified);
+        User user = PotentialUserDto.convertToEntity(userDto);
         user.setPassword("encodedpassword");
 
         when(passwordEncoder.encode(any())).thenAnswer(i -> "encoded" + i.getArguments()[0]);
@@ -44,10 +50,14 @@ class UserDatabaseServiceTest {
     @Test
     void testRegisterNewUserExistentEmailShouldThrowException() {
         //Arrange
-        UserRegistrationDto user = new UserRegistrationDto(
-                "test@gmail.com",
-                "password"
-                );
+        Long id = 1L; // example id
+        String email = "test@gmail.com";
+        String password = "Password123!"; // example password
+        String name = "Test User"; // example name
+        Date dateOfBirth = new Date(); // example date of birth
+        Boolean isVerified = false; // example isVerified
+
+        PotentialUserDto user = new PotentialUserDto(id, email, password, name, dateOfBirth, isVerified);
 
         when(userRepo.existsByEmail(any(String.class))).thenReturn(true);
 

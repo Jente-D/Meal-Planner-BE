@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/auth")
 @CrossOrigin
 @RequiredArgsConstructor
-public class AuthController {
+public class VerificationController {
     private final UserService userService;
     private final AuthenticationManager authManager;
-    private final RegistrationRequestService registrationRequestService;
+    private final RegistrationService registrationService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> handleRegisterNewUserRequest (@Valid @RequestBody UserRegistrationDto userDto, BindingResult br){
+    public ResponseEntity<String> handleRegisterNewUserRequest (@Valid @RequestBody PotentialUserDto userDto, BindingResult br){
         try{
         if(br.hasErrors()){
             String errorMsg;
@@ -37,13 +37,13 @@ public class AuthController {
             System.out.println(iae.getMessage());
             return ResponseEntity.badRequest().build();
         }
-        registrationRequestService.registerNewUserRequest(userDto);
+        registrationService.registerPotentialUser(userDto);
         return ResponseEntity.ok("A confimation email has been sent to " + userDto.getEmail());
     }
 
     @GetMapping("/confirm")
     public ResponseEntity<String> handleConfirmRegistration(@RequestParam("token") String confirmationToken) {
-        User user = registrationRequestService.confirmRegistration(confirmationToken);
+        User user = registrationService.activateUserAccount(confirmationToken);
         return ResponseEntity.ok("Account for " + user.getEmail() + " has been activated.");
     }
 

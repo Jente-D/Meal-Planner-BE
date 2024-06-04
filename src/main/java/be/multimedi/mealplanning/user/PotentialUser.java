@@ -11,7 +11,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RegistrationRequest {
+public class PotentialUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
