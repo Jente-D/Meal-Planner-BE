@@ -11,4 +11,6 @@ public interface MealRepository extends JpaRepository<Meal, Long> {
     List<Meal> findMealsByCaloriesLessThanEqual(@Param("calories") int calories);
 
     List<Meal> findMealsByMealType(MealType mealType);
+//    Optional
+    Meal findRandomMealByMealTypeAndCaloriesLessThanEqual (MealType mealType, int calories);
 }

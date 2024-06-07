@@ -1,9 +1,11 @@
 package be.multimedi.mealplanning.mealPlan;
 
 import jakarta.persistence.*;
+import lombok.Setter;
 
 import java.util.List;
 
+@Setter
 @Entity
 public class WeeklyMealPlan {
     @Id

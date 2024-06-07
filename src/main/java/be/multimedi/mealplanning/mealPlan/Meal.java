@@ -14,7 +14,4 @@ public class Meal {
     @Enumerated(EnumType.STRING)
     private MealType mealType;
     private int calories;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "weekly_meal_plan_id", insertable = false, updatable = false)
-    private WeeklyMealPlan weeklyMealPlan;
 }
