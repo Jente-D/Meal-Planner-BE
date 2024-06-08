@@ -20,7 +20,7 @@ public class MealServiceImpl implements MealService {
     }
 
    @Override
-   public List<Meal> findMealByCalories (int minCalories, int maxCalories){
+   public List<Meal> findMealByCaloriesBetween(int minCalories, int maxCalories){
         List<Meal> fittingMeals = mealRepo.findMealsByCaloriesBetween(minCalories, maxCalories);
         if(fittingMeals.isEmpty()){
             throw new IllegalArgumentException("No meals found between the given calories.");

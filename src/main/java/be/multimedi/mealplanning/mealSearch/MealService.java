@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface MealService {
     List<Meal> fetchAllMeals();
-    List<Meal> findMealByCalories (int minCalories, int maxCalories);
+    List<Meal> findMealByCaloriesBetween(int minCalories, int maxCalories);
 }
