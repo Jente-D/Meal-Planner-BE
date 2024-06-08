@@ -1,56 +1,47 @@
-package be.multimedi.mealplanning.mealPlan;
-
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-@Service
-@RequiredArgsConstructor
-public class WeeklyMealPlanServiceImpl implements WeeklyMealPlanService {
-    private final DayPlan dayPlan = new DayPlan();
-    private final MealRepository mealRepository;
-
-//    TODO: bepaal de dag restricties voor een dayPlan: mealTypes en prefferedMealType
-//    TODO: bepaal de range van Calories per maaltijd van het dayPlan
-//    TODO: selecteer random maaltijden voor die maaltijdTypen op basis van type maaltijd en Callorie range
-//    TODO: ga voor alle 7 de dagen op basis van de restrictied de maaltijden op halen en zorg dat er geen dubbelen in zitten
-//Counter tussen zetten tussen elke maaltijd > lunch, ontbijt, diner
-
-
-    @Override
-    public WeeklyMealPlan createWeeklyMealPlan(int totalCalories, int mealsPerDay, List<MealType> preferredMealTypes) {
-        int dailyCalories = totalCalories/7;
-        WeeklyMealPlan weeklyMealPlan = new WeeklyMealPlan();
-        List<Meal> usedMeals = new ArrayList<>();
-
-        var plan = dayPlan.initializeMealTypesForADay(mealsPerDay, preferredMealTypes);
-
-        for (int i = 0; i < 7; i++) {
-
-            for (MealType mealType : plan ) {
-                int mealCalories = (int) (dailyCalories * determineMealTypeCaloriePercentage().get(mealType));
-                Meal meal;
-                do {
-                    meal = mealRepository.findRandomMealByMealTypeAndCaloriesLessThanEqual(mealType, mealCalories);
-                } while (usedMeals.contains(meal));
-                usedMeals.add(meal);
-            }
-        }
-
-        weeklyMealPlan.setMeals(usedMeals);
-        return weeklyMealPlan;
-    }
-
-    private Map<MealType, Double> determineMealTypeCaloriePercentage() {
-        return Map.of(
-                MealType.BREAKFAST, 0.25,
-                MealType.LUNCH, 0.35,
-                MealType.DINNER, 0.35,
-                MealType.SNACK, 0.05
-        );
-    }
-
-}
+//package be.multimedi.mealplanning.mealPlan;
+//
+//import be.multimedi.mealplanning.mealSearch.Meal;
+//import be.multimedi.mealplanning.mealSearch.MealRepository;
+//import be.multimedi.mealplanning.mealSearch.MealType;
+//import lombok.RequiredArgsConstructor;
+//import org.springframework.stereotype.Service;
+//
+//import java.util.HashMap;
+//import java.util.List;
+//import java.util.Map;
+//
+//@Service
+//@RequiredArgsConstructor
+//public class WeeklyMealPlanServiceImpl implements WeeklyMealPlanService {
+//    private final int DAYS_A_WEEK = 7;
+//    private final MealRepository mealRepository;
+//
+//    @Override
+//    public WeeklyMealPlan createWeeklyMealPlan(int totalCalories, List<MealType> preferredMealTypes) {
+//        int caloriesADay = totalCalories/DAYS_A_WEEK;
+//        int caloriesPerMeal = caloriesADay/preferredMealTypes.size();
+////        START: standaard dag bestaat uit 3 hoofdmaaltijden
+//
+//        Map<MealType, Meal> dayOne = new HashMap<>();
+//
+//        for (MealType mealType : preferredMealTypes) {
+//            int totalCallories = 0;
+//
+//           Meal meal = mealRepository.findRandomMealByMealTypeAndCaloriesLessThanEqual(mealType, caloriesPerMeal);
+//            totalCallories += meal.getCalories();
+//            dayOne.put(mealType, meal);
+//        }
+//
+//        for (Map.Entry<MealType, Meal> entry : dayOne.entrySet()) {
+//            MealType mealType = entry.getKey();
+//            Meal meal = entry.getValue();
+//
+//            System.out.println("MealType: " + mealType);
+//            System.out.println("Meal: " + meal.getTitle());
+//            System.out.println("Calories: " + meal.getCalories());
+//        }
+//
+//        return null;
+//    }
+//
+//}

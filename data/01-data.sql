@@ -1,4 +1,4 @@
-INSERT INTO meals (title, mealType, calories, img_url) VALUES
+INSERT INTO meals (title, meal_type, calories, img_url) VALUES
         ('Pancakes', 'BREAKFAST', 350, 'https://media.istockphoto.com/id/96430985/photo/pancakes.jpg?s=612x612&w=0&k=20&c=jB8amkXMUpobVZh9vlx1qJb-qk2oz-jZJIbH0O3wLO4='),
         ('Omelette', 'BREAKFAST', 250, 'https://cdn.pixabay.com/photo/2015/05/20/16/11/kitchen-775746_1280.jpg'),
         ('Granola and Yogurt', 'BREAKFAST', 200, 'https://images.unsplash.com/photo-1641494587136-eec74f1944ae?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),

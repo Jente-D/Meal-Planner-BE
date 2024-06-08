@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-
 @AllArgsConstructor
 public class UserLoginDto {
     @Email(message="Please provide a valid email address")
