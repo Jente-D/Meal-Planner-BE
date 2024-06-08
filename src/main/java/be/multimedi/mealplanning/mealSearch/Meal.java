@@ -1,11 +1,9 @@
-package be.multimedi.mealplanning.mealPlan;
+package be.multimedi.mealplanning.mealSearch;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Getter
 @AllArgsConstructor

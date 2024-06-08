@@ -1,8 +1,7 @@
 package be.multimedi.mealplanning.mealPlan;
 
-import org.springframework.boot.autoconfigure.freemarker.FreeMarkerTemplateAvailabilityProvider;
+import be.multimedi.mealplanning.mealSearch.MealType;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;

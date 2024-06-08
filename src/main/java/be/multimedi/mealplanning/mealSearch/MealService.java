@@ -1,4 +1,4 @@
-package be.multimedi.mealplanning.mealPlan;
+package be.multimedi.mealplanning.mealSearch;
 
 import java.util.List;
 
