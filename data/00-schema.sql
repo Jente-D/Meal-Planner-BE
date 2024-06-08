@@ -14,3 +14,13 @@ CREATE TABLE potential_users (
         status BOOLEAN NOT NULL,
         primary key (id)
 );
+
+CREATE TABLE meals (
+        id INT GENERATED ALWAYS AS IDENTITY,
+        title VARCHAR(255),
+        mealType VARCHAR(255),
+        calories INT,
+        img_url VARCHAR(255),
+        PRIMARY KEY (id)
+);
+
