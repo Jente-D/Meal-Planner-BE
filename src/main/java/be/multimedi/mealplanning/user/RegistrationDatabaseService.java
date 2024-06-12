@@ -1,6 +1,7 @@
 package be.multimedi.mealplanning.user;
 
 import be.multimedi.mealplanning.messaging.EmailSenderService;
+import jakarta.mail.MessagingException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,7 +19,7 @@ public class RegistrationDatabaseService implements RegistrationService {
     private final UserRepository userRepository;
 
     @Override
-    public PotentialUser registerPotentialUser(PotentialUserDto potentialUserDto) {
+    public PotentialUser registerPotentialUser(PotentialUserDto potentialUserDto) throws MessagingException {
         if(emailIsNotUnique(potentialUserDto.getEmail())){
             throw new IllegalArgumentException("user with that email already exist" +potentialUserDto.getEmail());
         }
