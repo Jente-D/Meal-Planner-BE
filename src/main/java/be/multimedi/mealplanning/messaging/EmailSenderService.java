@@ -31,7 +31,7 @@ public class EmailSenderService {
                 + "<h1 style='color: #5e935e;'>Welcome to NeutriTech!</h1>"
                 + "<p>Thank you for registering with NeutriTech. To complete your registration and activate your account, please confirm your email address by clicking the button below:</p>"
                 + "<p style='text-align: center; margin: 20px 0;'>"
-                + "<a href='http://localhost:8080/api/v1/auth/confirm?token=" + potentialUser.getConfirmationToken() + "' class='btn-primary' style='display: inline-block; padding: 10px 20px; border-radius: 1rem; color: white; background-color: #5e935e; border: none; text-decoration: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);'>Confirm Your Account</a>"
+                + "<a href='http://localhost:4200/confirm-registration?token=" + potentialUser.getConfirmationToken() + "' class='btn-primary' style='display: inline-block; padding: 10px 20px; border-radius: 1rem; color: white; background-color: #5e935e; border: none; text-decoration: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);'>Confirm Your Account</a>"
                 + "</p>"
                 + "<p>If you did not sign up for a NeutriTech account, please ignore this email.</p>"
                 + "<p>Best regards,<br/>The NeutriTech Team</p>"
