@@ -5,10 +5,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class UserDetailsImpl implements UserDetails {
     private User user;
+    private Set<GrantedAuthority> auths = new HashSet<>();
 
     public UserDetailsImpl(User user) {
         this.user = user;
@@ -16,8 +19,8 @@ public class UserDetailsImpl implements UserDetails {
 
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+    public Collection<? extends GrantedAuthority> getAuthorities(){
+        return auths;
     }
 
     @Override

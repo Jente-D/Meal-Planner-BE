@@ -1,5 +1,6 @@
 package be.multimedi.mealplanning.user;
 
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class VerificationController {
     private final RegistrationService registrationService;
 
     @PostMapping("/register")
-    public ResponseEntity<Map<String, String>> handleRegisterNewUserRequest (@Valid @RequestBody PotentialUserDto userDto, BindingResult br) {
+    public ResponseEntity<Map<String, String>> handleRegisterNewUserRequest (@Valid @RequestBody PotentialUserDto userDto, BindingResult br) throws MessagingException {
         try {
             if (br.hasErrors()) {
                 String errorMsg;
