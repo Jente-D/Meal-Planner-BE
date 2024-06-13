@@ -1,4 +1,4 @@
-package be.multimedi.mealplanning.mealSearch;
+package be.multimedi.mealplanning.meals;
 
 public enum MealType {
     BREAKFAST,

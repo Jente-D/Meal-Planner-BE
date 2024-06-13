@@ -1,8 +1,8 @@
 package be.multimedi.mealplanning.mealPlan;
 
-import be.multimedi.mealplanning.mealSearch.Meal;
-import be.multimedi.mealplanning.mealSearch.MealRepository;
-import be.multimedi.mealplanning.mealSearch.MealType;
+import be.multimedi.mealplanning.meals.Meal;
+import be.multimedi.mealplanning.meals.MealRepository;
+import be.multimedi.mealplanning.meals.MealType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;

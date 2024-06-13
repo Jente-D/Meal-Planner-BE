@@ -1,4 +1,4 @@
-package be.multimedi.mealplanning.mealSearch;
+package be.multimedi.mealplanning.meals;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

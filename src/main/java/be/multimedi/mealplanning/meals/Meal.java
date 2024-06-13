@@ -1,4 +1,4 @@
-package be.multimedi.mealplanning.mealSearch;
+package be.multimedi.mealplanning.meals;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

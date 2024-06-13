@@ -1,6 +1,6 @@
 package be.multimedi.mealplanning.mealPlan;
 
-import be.multimedi.mealplanning.mealSearch.MealType;
+import be.multimedi.mealplanning.meals.MealType;
 
 import java.util.List;
 import java.util.Random;

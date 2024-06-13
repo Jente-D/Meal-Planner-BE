@@ -1,4 +1,4 @@
-package be.multimedi.mealplanning.mealSearch;
+package be.multimedi.mealplanning.meals;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,5 +28,15 @@ public class MealServiceImpl implements MealService {
             return fittingMeals;
         }
    }
+
+    @Override
+    public List<Meal> findMealByMealType(String mealType) {
+        List<Meal> filteredMeals = mealRepo.findMealsByMealType(MealType.valueOf(mealType.toUpperCase()));
+        if(filteredMeals.isEmpty()){
+            throw new IllegalArgumentException("No meals found with that type");
+        }else{
+            return filteredMeals;
+        }
+    }
 
 }
