@@ -25,7 +25,8 @@ public class DailyMealPlanServiceImpl implements DailyMealPlanService {
 
         DailyMealPlan dailyMealPlan = new DailyMealPlan();
         for (MealType mealType : mealTypes) {
-            List<Meal> potentialMeals = mealRepo.findMealsByMealTypeAndCaloriesLessThanEqual(mealType, MealTypeWithTotCal.get(mealType));
+            int targetCalories = MealTypeWithTotCal.get(mealType);
+            List<Meal> potentialMeals = mealRepo.findMealsByMealTypeAndCaloriesBetween(mealType, targetCalories - 50, targetCalories + 50);
             if (!potentialMeals.isEmpty()) {
                 Meal meal = potentialMeals.get(new Random().nextInt(potentialMeals.size()));
                 dailyMealPlan.getMeals().add(meal);
