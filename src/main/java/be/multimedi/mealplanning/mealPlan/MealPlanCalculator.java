@@ -1,9 +1,11 @@
 package be.multimedi.mealplanning.mealPlan;
 
 import be.multimedi.mealplanning.meals.MealType;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
+@Component
 public class MealPlanCalculator {
     public MealsADay determineMealsADay(List<MealType> mealTypes) {
         Collections.sort(mealTypes);
